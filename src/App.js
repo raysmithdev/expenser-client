@@ -10,7 +10,6 @@ import { connect } from 'react-redux'
 import { loginUserSuccess } from './actions/authActions'
 
 class App extends Component {
-
   componentDidMount() {
     if(localStorage.getItem('authToken')) {
       const authToken = localStorage.getItem('authToken')
