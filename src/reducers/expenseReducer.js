@@ -43,6 +43,8 @@ const expenseReducer = (state = initialState, action) => {
       } else if(action.filterBy === 'month') {
         filteredExpenses = state.expenses.filter(expense => expense.createdAt > action.startDate  &&  expense.createdAt <= action.endDate)
         filterResultsTitle = action.filterResultsTitle
+      } else if(action.filterBy === 'custom') {
+        filteredExpenses = state.expenses.filter(expense => expense.createdAt >= action.startDate  &&  expense.createdAt <= action.endDate)
       }
 
       let total = 0
