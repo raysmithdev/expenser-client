@@ -10,7 +10,6 @@ import { toggleAddExpenseForm, filterExpenses} from '../../../actions/expenseAct
 import moment from 'moment'
 import Subheader from 'material-ui/Subheader'
 
-
 class Navbar extends Component {
 
   constructor(props) {

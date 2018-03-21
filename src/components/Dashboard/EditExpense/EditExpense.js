@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createExpense, toggleAddExpenseForm } from '../../../actions/expenseActions'
+import { createExpense, toggleEdiExpenseForm } from '../../../actions/expenseActions'
 import TextField from 'material-ui/TextField'
-import './AddExpense.css'
 import DatePicker from 'material-ui/DatePicker';
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
@@ -10,31 +9,41 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import moment from 'moment'
 
-class AddExpense extends Component {
+class EditExpense extends Component {
 
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
+    // console.log(props);
     this.state = {
-      amount: 0,
-      category: '',
-      location: '',
-      date: '',
-      owner: '',
-      workExpense: true
+      amount: props.expense.amount,
+      category: props.expense.category,
+      location: props.expense.location,
+      date: props.expense.createdAt,
+      owner: props.expense.owner,
+      workExpense: props.expense.workExpense
     }
   }
 
-  render() {
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      amount: newProps.expense.amount,
+      category: newProps.expense.category,
+      location: newProps.expense.location,
+      date: newProps.expense.createdAt,
+      owner: newProps.expense.owner,
+      workExpense: newProps.expense.workExpense
+    })
+  }
 
+  render() {
     const actions = [
       <FlatButton
-        label="Cancel"
+        label="CANCEL"
         secondary={true}
-        onClick={() => this.props.dispatch(toggleAddExpenseForm())}
+        onClick={() => this.props.dispatch(toggleEdiExpenseForm({}))}
       />,
       <FlatButton
-        label="Create"
+        label="UPDATE"
         primary={true}
         keyboardFocused={true}
         onClick={() => this.props.dispatch(createExpense(this.state))}
@@ -45,14 +54,14 @@ class AddExpense extends Component {
     return (
       <div>
           <Dialog
-           title="Create expense"
+           title="Edit expense"
            actions={actions}
            modal={false}
            open={this.props.showForm}
            onRequestClose={this.handleClose}
          >
            <form className="AddExpenseForm">
-             <TextField hintText="Amount" name="amount" ref={el => this.amount = el} onChange={(event, amount) => this.setState({ amount })}/>
+             <TextField hintText="Amount" name="amount" ref={el => this.amount = el} onChange={(event, amount) => this.setState({ amount })} value={this.state.amount}/>
              <br />
              <SelectField
                 floatingLabelText="Category"
@@ -85,7 +94,7 @@ class AddExpense extends Component {
                  <MenuItem value={false} primaryText="No" />
                </SelectField>
                <br />
-             <TextField hintText="Location" name="location"ref={el => this.location = el} onChange={(event, location) => this.setState({ location })} />
+             <TextField hintText="Location" name="location"ref={el => this.location = el} onChange={(event, location) => this.setState({ location })} value={this.state.location} />
              <br />
              <DatePicker hintText="Date" autoOk={true} ref={el => this.date = el} onChange={(event, date) => this.setState({ date: moment(date).format('YYYY-MM-DD') })} />
              <br />
@@ -97,7 +106,8 @@ class AddExpense extends Component {
 }
 
 const mapStateToProps = state => ({
-  showForm: state.expenseReducer.showForm
+  showForm: state.expenseReducer.showEditExpenseForm,
+  expense: state.expenseReducer.selectedExpense
 })
 
-export default connect(mapStateToProps)(AddExpense)
+export default connect(mapStateToProps)(EditExpense)

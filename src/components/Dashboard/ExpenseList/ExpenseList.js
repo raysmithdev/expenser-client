@@ -11,12 +11,14 @@ import {
 import './ExpenseList.css'
 import moment from 'moment'
 import FontIcon from 'material-ui/FontIcon'
+import { toggleEdiExpenseForm } from '../../../actions/expenseActions'
 
 const ExpenseList = (props) => (
-  <Table selectable={false}>
+  <Table onCellClick={(index) => props.dispatch(toggleEdiExpenseForm(props.expenses[index]))}>
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>DATE</TableHeaderColumn>
+        <TableHeaderColumn>OWNER</TableHeaderColumn>
         <TableHeaderColumn>AMOUNT</TableHeaderColumn>
         <TableHeaderColumn>CATEGORY</TableHeaderColumn>
         <TableHeaderColumn>LOCATION</TableHeaderColumn>
@@ -25,7 +27,8 @@ const ExpenseList = (props) => (
     <TableBody>
       {props.expenses.map(expense => (
         <TableRow key={expense._id}>
-          <TableRowColumn>{moment(expense.createdAt).format("MMM Do YY")}</TableRowColumn>
+          <TableRowColumn>{moment(expense.createdAt).format('dddd')} {moment(expense.createdAt).format("MMM Do YY")}</TableRowColumn>
+          <TableRowColumn>{expense.owner ? expense.owner : 'Other'}</TableRowColumn>
           <TableRowColumn>${expense.amount}</TableRowColumn>
           <TableRowColumn>
             {expense.category === 'Travel' ? <FontIcon className="material-icons" color={"#4A83FA"}>flight_land</FontIcon> : ''}
@@ -41,8 +44,18 @@ const ExpenseList = (props) => (
   </Table>
 )
 
-const mapStateToProps = state => ({
-  expenses: state.expenseReducer.expenses
-})
+const mapStateToProps = state => {
+  let expenses = []
+
+  if(state.expenseReducer.filteredExpenses.length > 0) {
+    expenses = state.expenseReducer.filteredExpenses
+  } else {
+    expenses = state.expenseReducer.expenses
+  }
+
+  return {
+    expenses
+  }
+}
 
 export default connect(mapStateToProps)(ExpenseList)

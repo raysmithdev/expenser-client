@@ -1,6 +1,9 @@
 const initialState = {
   expenses: [],
+  filteredExpenses: [],
+  selectedExpense: {},
   showForm: false,
+  showEditExpenseForm: false,
   total: 0,
   filterResultsTitle: ''
 }
@@ -20,29 +23,36 @@ const expenseReducer = (state = initialState, action) => {
         showForm: !state.showForm
       }
 
+    case 'TOGGLE_EDIT_EXPENSE_FORM':
+      return {
+        ...state,
+        selectedExpense: action.expense,
+        showEditExpenseForm: !state.showEditExpenseForm
+      }
+
     case 'FILTER_EXPENSES':
 
-      let expenses = []
+      let filteredExpenses = []
       let filterResultsTitle = ''
 
       // filter out the results
       if(action.filterBy === 'today') {
-        expenses = state.expenses.filter(expense => action.startDate >= expense.createdAt && action.endDate <= expense.createdAt)
+        filteredExpenses = state.expenses.filter(expense => action.startDate >= expense.createdAt && action.endDate <= expense.createdAt)
       } else if(action.filterBy === 'weekly') {
-        expenses = state.expenses.filter(expense => expense.createdAt >= action.startDate  &&  expense.createdAt < action.endDate)
+        filteredExpenses = state.expenses.filter(expense => expense.createdAt >= action.startDate  &&  expense.createdAt < action.endDate)
       } else if(action.filterBy === 'month') {
-        expenses = state.expenses.filter(expense => expense.createdAt > action.startDate  &&  expense.createdAt <= action.endDate)
+        filteredExpenses = state.expenses.filter(expense => expense.createdAt > action.startDate  &&  expense.createdAt <= action.endDate)
         filterResultsTitle = action.filterResultsTitle
       }
 
       let total = 0
 
       // total the amount spent based on filter
-      expenses.forEach(expense => total += Number(expense.amount))
+      filteredExpenses.forEach(expense => total += Number(expense.amount))
 
       return {
         ...state,
-        expenses,
+        filteredExpenses,
         total,
         filterResultsTitle
       }

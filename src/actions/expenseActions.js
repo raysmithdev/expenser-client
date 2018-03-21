@@ -33,10 +33,10 @@ export const fetchExpenses = () => dispatch => {
 
     expenses.sort((a,b) => {
       if(a.createdAt < b.createdAt) {
-        return -1
+        return 1
       }
       if(a.createdAt > b.createdAt) {
-        return 1
+        return -1
       }
         return 0
     })
@@ -55,6 +55,12 @@ export const fetchExpensesSuccess = expenses => ({
 const TOGGLE_ADD_EXPENSE_FORM = 'TOGGLE_ADD_EXPENSE_FORM'
 export const toggleAddExpenseForm = () => ({
   type: TOGGLE_ADD_EXPENSE_FORM
+})
+
+const TOGGLE_EDIT_EXPENSE_FORM = 'TOGGLE_EDIT_EXPENSE_FORM'
+export const toggleEdiExpenseForm = expense => ({
+  type: TOGGLE_EDIT_EXPENSE_FORM,
+  expense
 })
 
 const FILTER_EXPENSES = 'FILTER_EXPENSES'
