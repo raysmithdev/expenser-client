@@ -18,6 +18,7 @@ class DashboardPage extends Component {
     return (
       <div>
         <Navbar />
+        {this.props.expenseTotal > 0 ? <h2 style={{ textAlign: 'center' }}>{this.props.expenseTotal}</h2>: ''}
         <ExpenseSearch />
         <AddExpense />
         <EditExpense />
@@ -28,4 +29,8 @@ class DashboardPage extends Component {
   }
 }
 
-export default connect()(DashboardPage);
+const mapStateToProps = state => ({
+  expenseTotal: state.expenseReducer.total
+})
+
+export default connect(mapStateToProps)(DashboardPage);

@@ -19,15 +19,9 @@ class ExpenseSearch extends Component {
         <DatePicker hideCalendarDate={true} container="inline"  autoOk={true} hintText="From" onChange={(event, from) => this.setState({ from: moment(from).format('YYYY-MM-DD'), })}/>
         <DatePicker hideCalendarDate={true} container="inline" autoOk={true} hintText="To" onChange={(event, to) => this.setState({ to: moment(to).format('YYYY-MM-DD'),})} />
         <FlatButton backgroundColor="#F16664" style={{ marginTop: 5, marginLeft: 10}} label="Search"  onClick={() => this.props.dispatch(filterExpenses(this.state.from, this.state.to, 'custom', ''))}/>
-        <p>{this.props.expenseTotal}</p>
       </div>
     );
   }
 }
 
-
-const mapStateToProps = state => ({
-  expenseTotal: state.expenseReducer.total
-})
-
-export default connect(mapStateToProps)(ExpenseSearch);
+export default connect()(ExpenseSearch);
