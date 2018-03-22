@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DatePicker from 'material-ui/DatePicker'
-import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton'
 import './ExpenseSearch.css'
 import { filterExpenses } from '../../../actions/expenseActions'
 import moment from 'moment'
@@ -16,9 +16,9 @@ class ExpenseSearch extends Component {
   render() {
     return (
       <div className="EventSearchContainer">
-        <DatePicker autoOk={true} hintText="From" onChange={(event, from) => this.setState({ from: moment(from).format('YYYY-MM-DD'), })}/>
-        <DatePicker autoOk={true} hintText="To" onChange={(event, to) => this.setState({ to: moment(to).format('YYYY-MM-DD'),})} />
-        <RaisedButton label="Create" onClick={() => this.props.dispatch(filterExpenses(this.state.from, this.state.to, 'custom', ''))}/>
+        <DatePicker container="inline"  autoOk={true} hintText="From" onChange={(event, from) => this.setState({ from: moment(from).format('YYYY-MM-DD'), })}/>
+        <DatePicker container="inline" autoOk={true} hintText="To" onChange={(event, to) => this.setState({ to: moment(to).format('YYYY-MM-DD'),})} />
+        <FlatButton backgroundColor="#F16664" style={{ marginTop: 5, marginLeft: 10}} label="Search"  onClick={() => this.props.dispatch(filterExpenses(this.state.from, this.state.to, 'custom', ''))}/>
       </div>
     );
   }

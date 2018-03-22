@@ -31,7 +31,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <Toolbar style={{backgroundColor: '#F6CE6F'}}>
+      <Toolbar style={{backgroundColor: '#FFF6E6'}}>
         <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange}>
             <MenuItem value={"Filter"} primaryText="Filter by" />
@@ -44,8 +44,8 @@ class Navbar extends Component {
         <ToolbarGroup>
           <FontIcon className="muidocs-icon-custom-sort" />
           <ToolbarSeparator />
-          <RaisedButton backgroundColor='#F55D60' label="Create" onClick={() => this.props.dispatch(toggleAddExpenseForm())}/>
-          <RaisedButton backgroundColor='#F55D60' label="Logout" onClick={() => this.props.dispatch(logoutUser())}/>
+          <RaisedButton backgroundColor='#F16664' label="Create" onClick={() => this.props.dispatch(toggleAddExpenseForm())}/>
+          <RaisedButton backgroundColor='#F16664' label="Logout" onClick={() => this.props.dispatch(logoutUser())}/>
         </ToolbarGroup>
       </Toolbar>
     );
