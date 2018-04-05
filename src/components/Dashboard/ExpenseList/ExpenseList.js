@@ -38,6 +38,7 @@ const ExpenseList = props => (
             {expense.category === 'Coffee' ? <FontIcon className="material-icons" color={"#00704a"}>free_breakfast</FontIcon> : ''}
             {expense.category === 'Rent' ? <FontIcon className="material-icons" color={"#F55D60"}>home</FontIcon> : ''}
             {expense.category === 'Food' ? <FontIcon className="material-icons" color={"#17BEBB"}>restaurant</FontIcon> : ''}
+            {expense.category === 'Office' ? <FontIcon className="material-icons" color={"#17BEBB"}>work</FontIcon> : ''}
             {expense.category === 'Alcohol' ? <FontIcon className="material-icons" color={"#FF6B35"}>local_drink</FontIcon> : ''}
             {expense.category === 'Other' ? <FontIcon className="material-icons" color={"#CCCCCC"}>remove</FontIcon> : ''}
           </TableRowColumn>
