@@ -21,6 +21,20 @@ export const createExpense = (expense) => dispatch => {
   .catch(error => console.log(error))
 }
 
+export const deleteExpense = expenseId => dispatch => {
+
+  fetch(`${API_BASE_URL}/expense/${localStorage.getItem('userId')}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+    },
+    body: JSON.stringify({ expenseId })
+  })
+  .then(res => res.json())
+  .then(expenses => dispatch(fetchExpensesSuccess(expenses)))
+  .catch(error => console.log(error))
+}
 
 export const fetchExpenses = () => dispatch => {
   fetch(`${API_BASE_URL}/expense/${localStorage.getItem('userId')}`, {

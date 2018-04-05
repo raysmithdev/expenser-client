@@ -11,10 +11,11 @@ import {
 import './ExpenseList.css'
 import moment from 'moment'
 import FontIcon from 'material-ui/FontIcon'
-import { toggleEdiExpenseForm } from '../../../actions/expenseActions'
+import RaisedButton from 'material-ui/RaisedButton'
+import { deleteExpense } from '../../../actions/expenseActions'
 
-const ExpenseList = (props) => (
-  <Table className="ExpenseListTable" onCellClick={(index) => props.dispatch(toggleEdiExpenseForm(props.expenses[index]))}>
+const ExpenseList = props => (
+  <Table className="ExpenseListTable">
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>DATE</TableHeaderColumn>
@@ -22,6 +23,7 @@ const ExpenseList = (props) => (
         <TableHeaderColumn>AMOUNT</TableHeaderColumn>
         <TableHeaderColumn>OWNER</TableHeaderColumn>
         <TableHeaderColumn>CATEGORY</TableHeaderColumn>
+        <TableHeaderColumn>ACTION</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody>
@@ -37,6 +39,13 @@ const ExpenseList = (props) => (
             {expense.category === 'Rent' ? <FontIcon className="material-icons" color={"#F55D60"}>home</FontIcon> : ''}
             {expense.category === 'Food' ? <FontIcon className="material-icons" color={"#17BEBB"}>restaurant</FontIcon> : ''}
             {expense.category === 'Alcohol' ? <FontIcon className="material-icons" color={"#FF6B35"}>local_drink</FontIcon> : ''}
+          </TableRowColumn>
+          <TableRowColumn>
+            <RaisedButton
+              label="Delete"
+              secondary={true}
+              onClick={() => props.dispatch(deleteExpense(expense._id))}
+            />
           </TableRowColumn>
         </TableRow>
       ))}
