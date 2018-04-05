@@ -5,6 +5,7 @@ import AddExpense from './AddExpense/AddExpense'
 import EditExpense from './EditExpense/EditExpense'
 import ExpenseList from './ExpenseList/ExpenseList'
 import ExpenseSearch from './ExpenseSearch/ExpenseSearch'
+import ExpenseMonthDetail from './ExpenseMonthDetail/ExpenseMonthDetail'
 import Alert from '../Alert/Alert'
 import Navbar from './Navbar/Navbar'
 import './Dashboard.css'
@@ -23,6 +24,7 @@ class DashboardPage extends Component {
         <AddExpense />
         <EditExpense />
         <ExpenseList />
+        <ExpenseMonthDetail />
         <Alert />
       </div>
     );

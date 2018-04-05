@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loginUser } from '../../actions/authActions'
+import { loginUser } from '../../../actions/authActions'
+import './Login.css'
 
 const Login = ({ dispatch }) => (
-  <div>
+  <div className="container">
     <h1>Login</h1>
     <form onSubmit={event => {
       event.preventDefault()

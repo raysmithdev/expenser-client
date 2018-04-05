@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import './LandingPage.css'
+import RaisedButton from 'material-ui/RaisedButton'
 
 class LandingPage extends Component {
   render() {
     return (
-      <div>
-        <h1>Hello</h1>
+      <div className="container">
+        <h1 className="title">Welcome</h1>
         <Link to="/register">
-          <button>Register</button>
+          <RaisedButton backgroundColor='#F16664' label="Register" />
         </Link>
 
         <Link to="/login">
-          <button>Login</button>
+          <RaisedButton backgroundColor='#F16664' label="Login" />
         </Link>
       </div>
     );

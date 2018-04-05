@@ -4,7 +4,7 @@ import { Router, Route } from "react-router-dom"
 import LandingPage from './components/LandingPage'
 import Register from './components/Auth/Register'
 import DashboardPage from './components/Dashboard/DashboardPage'
-import Login from './components/Auth/Login'
+import Login from './components/Auth/Login/Login'
 import history from './history'
 import { connect } from 'react-redux'
 import { loginUserSuccess } from './actions/authActions'
