@@ -65,6 +65,7 @@ class AddExpense extends Component {
                 <MenuItem value={"Office"} primaryText="Office" />
                 <MenuItem value={"Alcohol"} primaryText="Alcohol" />
                 <MenuItem value={"Rent"} primaryText="Rent" />
+                <MenuItem value={"Other"} primaryText="Other" />
               </SelectField>
              <br />
              <SelectField
