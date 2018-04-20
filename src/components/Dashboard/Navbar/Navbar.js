@@ -39,7 +39,7 @@ class Navbar extends Component {
             <MenuItem value={"Weekly"} primaryText="Weekly" />
             <MenuItem value={"Month"} primaryText="Month" />
           </DropDownMenu>
-          {this.props.filterResultsTitle !== '' ? <Subheader style={{ marginTop: '7px' }}>Showing results for: {this.props.filterResultsTitle} & Total spent: $ {this.props.expenseTotal}</Subheader>  : ''}
+          {this.props.filterResultsTitle !== '' ? <Subheader style={{ marginTop: '7px' }}>Showing results for: {this.props.filterResultsTitle} & Total spent: $ {Math.round(this.props.expenseTotal)}</Subheader>  : ''}
         </ToolbarGroup>
         <ToolbarGroup>
           <FontIcon className="muidocs-icon-custom-sort" />

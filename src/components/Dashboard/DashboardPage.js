@@ -19,12 +19,12 @@ class DashboardPage extends Component {
     return (
       <div>
         <Navbar />
-        {this.props.expenseTotal > 0 ? <h2 style={{ textAlign: 'center' }}>{this.props.expenseTotal}</h2>: ''}
+        {this.props.expenseTotal > 0 ? <h2 style={{ textAlign: 'center' }}>${Math.round(this.props.expenseTotal)}</h2>: ''}
         <ExpenseSearch />
         <AddExpense />
         <EditExpense />
         <ExpenseList />
-        <ExpenseMonthDetail />
+        {/* <ExpenseMonthDetail /> */}
         <Alert />
       </div>
     );
