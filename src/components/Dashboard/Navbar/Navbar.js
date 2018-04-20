@@ -24,9 +24,12 @@ class Navbar extends Component {
       this.props.dispatch(filterExpenses(moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'), 'today'))
     } else if(value === 'Weekly') {
       this.props.dispatch(filterExpenses(moment().startOf('isoWeek').format('YYYY-MM-DD'), moment().endOf('isoWeek').format('YYYY-MM-DD'), 'weekly'))
-    } else {
+    } else if(value === 'Ray') {
+      this.props.dispatch(filterExpenses('', '', '', 'Ray'))
+    }  else {
       this.props.dispatch(filterExpenses(moment().startOf('month').format('YYYY-MM-DD'), moment().endOf('month').format('YYYY-MM-DD'), 'month', moment().startOf('month').format('MMMM-YYYY')))
     }
+
   }
 
   render() {
@@ -35,6 +38,7 @@ class Navbar extends Component {
         <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange}>
             <MenuItem value={"Filter"} primaryText="Filter by" />
+            <MenuItem value={"Ray"} primaryText="Ray" />
             <MenuItem value={"Today"} primaryText="Today" />
             <MenuItem value={"Weekly"} primaryText="Weekly" />
             <MenuItem value={"Month"} primaryText="Month" />

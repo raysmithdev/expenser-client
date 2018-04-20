@@ -45,6 +45,8 @@ const expenseReducer = (state = initialState, action) => {
         filterResultsTitle = action.filterResultsTitle
       } else if(action.filterBy === 'custom') {
         filteredExpenses = state.expenses.filter(expense => expense.createdAt >= action.startDate  &&  expense.createdAt <= action.endDate)
+      } else if(action.filterResultsTitle === 'Ray') {
+        filteredExpenses = state.expenses.filter(expense => expense.owner === action.filterResultsTitle)
       }
 
       let total = 0
